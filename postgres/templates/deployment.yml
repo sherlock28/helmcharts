@@ -37,18 +37,18 @@ spec:
             value: {{ .Values.env.tz }}
           - name: PGTZ
             value: {{ .Values.env.pgtz }}
-            readinessProbe:
-              initialDelaySeconds: 15
-              failureThreshold: 5
-              timeoutSeconds: 2
-              exec:
-                command: ["psql", "-w", "-U", "$(POSTGRES_USER)", "-d", "$(POSTGRES_DB)", "-c", "SELECT 1"]
-            livenessProbe:
-              initialDelaySeconds: 15
-              failureThreshold: 5
-              timeoutSeconds: 2
-              exec:
-                command: ["psql", "-w", "-U", "$(POSTGRES_USER)", "-d", "$(POSTGRES_DB)", "-c", "SELECT 1"]
+          readinessProbe:
+            initialDelaySeconds: 15
+            failureThreshold: 5
+            timeoutSeconds: 2
+            exec:
+              command: ["psql", "-w", "-U", "$(POSTGRES_USER)", "-d", "$(POSTGRES_DB)", "-c", "SELECT 1"]
+          livenessProbe:
+            initialDelaySeconds: 15
+            failureThreshold: 5
+            timeoutSeconds: 2
+            exec:
+              command: ["psql", "-w", "-U", "$(POSTGRES_USER)", "-d", "$(POSTGRES_DB)", "-c", "SELECT 1"]
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: pgdata
