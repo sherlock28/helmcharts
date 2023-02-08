@@ -2,13 +2,13 @@ apiVersion: v1
 entries:
   redis:
   - apiVersion: v2
-    appVersion: "5"
-    created: "2023-02-08T15:43:00.3309729-03:00"
+    appVersion: 5-alpine
+    created: "2023-02-08T16:30:55.6829482-03:00"
     description: A Helm chart for install Redis in Kubernetes
-    digest: ec26c0b3df5401146dd4d367cb97ff3645a33c626a173268055d4a8a758fd7b7
+    digest: 28077518ae012ad5181dd385f32fdb7ba9377fa99186efd52594b8d47c27472f
     name: redis
     type: application
     urls:
     - charts/redis-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-08T15:43:00.3304579-03:00"
+generated: "2023-02-08T16:30:55.6824007-03:00"
