@@ -10,7 +10,12 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "5-alpine"
 
-redisPassword: "AgBmk4KVUX52zqnkjM4Zy1THNiJoVXYzQMO8nZEWcfZ3HzGTlRSuv6bqZefvRenJlAcLh9Lb7oPk5a8YacGJA3AOVAEDgcbiJj2LrsEhl632/gYzX1Segz1BaEX4ii+0xmayBHq7f5N1SSyBlApQWK4Ee/kR0An2C+J/Z59ta4DkmOk1qZvuCNPI759FGby5uBVi1wtM3tnsco1RL/iWQ8TMn5hyCSNUFjJHWXkDNn1d17oaxNeXJ2Pr44t6ebPnoBWgAghyh6A3j5FWjk4agZTwnSitGUyz31z8v2UBh8EUYlCUrLGuuSGVdQF00TIesjUwqLf+PxkrZzmExZoCKc29D+VMAtsfndDYTutDBqrhQ4/VY5sVG/RYtLo1XPFxXq6lHXTtK1IwQuQXzxkeZVLdSE+rVB8dIf0cSkJqM/4ZIJh9osvjDVTj9fmwU7jWZDRBGsF7+qIZfJX8kRRE7+SRg1MR0xYGRZz2umufUax5H+99zzatdmF15UY+ekm8KB+Xo4t18hdVI3XwNbb5AmlYy8osi9S/WuvKZ5Ie+leyz3uUU0+E5oQ4Y9uuNvoH0EqxjmnVzfKzviBCqoPLuX0Cy744uSv6J2teY/ZDew8uwfPdQ+28UESqQgk8bL/Aodd9zsqrooEAr6y8KPeDhwOnSw/p3ti42ti+j/VCwhqt7W2jVFbJ1Vp/bbhfERzM5AwlF0tfKKKeHHuFjyItzQ=="
+# Use 
+# echo -n 'my-password' | base64
+# for encode and use 
+# echo -n 'bXktcGFzc3dvcmQ=' | base64 -d 
+# for decode
+redisPassword: "YWRtaW4=" # default password: admin
 
 autoscaling:
   enabled: false
