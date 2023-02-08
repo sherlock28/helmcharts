@@ -1,12 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis
+  name: redis-deployment
   namespace: redis
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
+  replicas: 1
   selector:
     matchLabels:
       app: redis
@@ -24,12 +22,12 @@ spec:
         # args: ["/etc/redis/redis.conf"]
         ports:
         - containerPort: 6379
-          name: redis
+          name: redisport
         env:
         - name: MASTER
           value: "true"
         - name: redisPassword
           valueFrom:
             secretKeyRef:
-              name: redis-credentials
+              name: redis-secret
               key: redisPassword

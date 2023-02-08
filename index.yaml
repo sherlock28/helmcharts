@@ -3,12 +3,12 @@ entries:
   redis:
   - apiVersion: v2
     appVersion: 5-alpine
-    created: "2023-02-08T16:55:35.3217301-03:00"
+    created: "2023-02-08T17:08:07.3966342-03:00"
     description: A Helm chart for install Redis in Kubernetes
-    digest: 02f5670e108a7bae30abd7291266a78c68089fb260114d5bc25e9e1ae86b4cea
+    digest: 79c0be3d7f0b1302aa0523b0cd6ba13042ca84832efea2bd0c35fec5cbe5167b
     name: redis
     type: application
     urls:
     - charts/redis-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-08T16:55:35.3217301-03:00"
+generated: "2023-02-08T17:08:07.3961227-03:00"
