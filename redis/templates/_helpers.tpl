@@ -1,0 +1,1 @@
+Explain how to install the chart
