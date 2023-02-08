@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  namespace: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 5432
+              name: postgresport
+          env:
+          - name: POSTGRES_DB
+            value: {{ .Values.env.defaultDatabase }}
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: username
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: password
+          - name: TZ
+            value: {{ .Values.env.tz }}
+          - name: PGTZ
+            value: {{ .Values.env.pgtz }}
+            readinessProbe:
+              initialDelaySeconds: 15
+              failureThreshold: 5
+              timeoutSeconds: 2
+              exec:
+                command: ["psql", "-w", "-U", "$(POSTGRES_USER)", "-d", "$(POSTGRES_DB)", "-c", "SELECT 1"]
+            livenessProbe:
+              initialDelaySeconds: 15
+              failureThreshold: 5
+              timeoutSeconds: 2
+              exec:
+                command: ["psql", "-w", "-U", "$(POSTGRES_USER)", "-d", "$(POSTGRES_DB)", "-c", "SELECT 1"]
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: pgdata
+      volumes:
+        - name: pgdata
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+
+
+
+
+
+
+
+
+
+
+
+

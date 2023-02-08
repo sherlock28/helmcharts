@@ -1,0 +1,35 @@
+# Default values for postgres.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: postgres
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "11"
+
+env:
+  defaultDatabase: "TEST"
+  tz: "America/Argentina/Buenos_Aires"
+  pgtz: "America/Argentina/Buenos_Aires"
+# Use 
+# echo -n 'my-password' | base64
+# for encode and use 
+# echo -n 'bXktcGFzc3dvcmQ=' | base64 -d 
+# for decode
+  username: "cG9zdGdyZXM=" # default user: postgres
+  password: "YWRtaW4=" # default password: admin
+
+service:
+  port: 5432
+
+persistentVolume:
+  capacity: 
+    storage: "5Gi"
+  hostPath: 
+    path: "/mnt/pgdata"
+
+persistentVolumeClaim:
+  resources:
+    requests:
+      storage: "5Gi"
