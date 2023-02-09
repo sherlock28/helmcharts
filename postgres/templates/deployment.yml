@@ -20,10 +20,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: 
-                - psql 
-                - -U postgres 
-                - -c "CREATE DATABASE {{ .Values.env.defaultDatabase }}"
+              command: ["/bin/sh", "-c", "until psql -h localhost -U {{ .Values.env.username }} -c 'SELECT 1' > /dev/null 2>&1; do echo 'Waiting for postgres...'; sleep 1; done; psql -h localhost -U {{ .Values.env.username }} -c 'CREATE DATABASE {{ .Values.env.defaultDatabase }};'"]
           ports:
             - containerPort: 5432
               name: postgresport
