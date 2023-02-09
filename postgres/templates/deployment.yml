@@ -17,6 +17,13 @@ spec:
         - name: postgres
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          lifecycle:
+            postStart:
+              exec:
+                command: 
+                - psql 
+                - -U postgres 
+                - -c "CREATE DATABASE {{ .Values.env.defaultDatabase }}"
           ports:
             - containerPort: 5432
               name: postgresport
