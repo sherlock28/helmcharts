@@ -20,7 +20,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-              command: ["/bin/sh", "-c", "until psql -h localhost -U {{ .Values.env.username }} -c 'SELECT 1' > /dev/null 2>&1; do echo 'Waiting for postgres...'; sleep 1; done; psql -h localhost -U {{ .Values.env.username }} -c 'CREATE DATABASE {{ .Values.env.defaultDatabase }};'"]
+              command: ["psql -h localhost -U {{ .Values.env.username }} -c 'CREATE DATABASE {{ .Values.env.defaultDatabase }};'"]
           ports:
             - containerPort: 5432
               name: postgresport
@@ -60,15 +60,3 @@ spec:
         - name: pgdata
           persistentVolumeClaim:
             claimName: postgres-pvc
-
-
-
-
-
-
-
-
-
-
-
-
