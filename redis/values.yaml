@@ -8,12 +8,8 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "5-alpine"
 
-# Use 
-# echo -n 'my-password' | base64
-# for encode and use 
-# echo -n 'bXktcGFzc3dvcmQ=' | base64 -d 
-# for decode
-redisPassword: "YWRtaW4=" # default password: admin
+secret:
+  redisPassword: "admin" # default password: admin
 
 service:
   port: 6379
