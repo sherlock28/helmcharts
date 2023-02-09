@@ -12,13 +12,8 @@ env:
   defaultDatabase: "TEST"
   tz: "America/Argentina/Buenos_Aires"
   pgtz: "America/Argentina/Buenos_Aires"
-# Use 
-# echo -n 'my-password' | base64
-# for encode and use 
-# echo -n 'bXktcGFzc3dvcmQ=' | base64 -d 
-# for decode
-  username: "cG9zdGdyZXM=" # default user: postgres
-  password: "YWRtaW4=" # default password: admin
+  username: "postgres"
+  password: "admin"
 
 service:
   port: 5432

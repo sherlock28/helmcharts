@@ -42,13 +42,13 @@ spec:
             failureThreshold: 5
             timeoutSeconds: 2
             exec:
-              command: ["psql", "-w", "-U", "$(POSTGRES_USER)", "-d", "$(POSTGRES_DB)", "-c", "SELECT 1"]
+              command: ["psql", "-w", "-U", {{ .Values.env.username }}, "-d", "{{ .Values.env.defaultDatabase }}", "-c", "SELECT 1"]
           livenessProbe:
             initialDelaySeconds: 15
             failureThreshold: 5
             timeoutSeconds: 2
             exec:
-              command: ["psql", "-w", "-U", "$(POSTGRES_USER)", "-d", "$(POSTGRES_DB)", "-c", "SELECT 1"]
+              command: ["psql", "-w", "-U", "{{ .Values.env.username }}", "-d", "{{ .Values.env.defaultDatabase }}", "-c", "SELECT 1"]
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: pgdata
