@@ -20,7 +20,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-              command: ["psql -h localhost -U {{ .Values.env.username }} -c 'CREATE DATABASE {{ .Values.env.defaultDatabase }};'"]
+              command: ["psql", "-U", "{{ .Values.env.username }}", " -c", "'CREATE DATABASE {{ .Values.env.defaultDatabase }};'"]
           ports:
             - containerPort: 5432
               name: postgresport
