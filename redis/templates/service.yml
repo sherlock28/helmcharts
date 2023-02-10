@@ -12,3 +12,19 @@ spec:
       targetPort: 6379
   selector:
     app: redis
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service-lb
+  namespace: {{ .Release.Namespace | quote }}
+spec:
+  type: LoadBalancer
+  ports:
+    - name: redis-service-port-http
+      protocol: TCP
+      port: {{ DEFAULT:5432.Values.service.port }}
+      targetPort: 5432
+  selector:
+    app: redis
