@@ -5,7 +5,7 @@ metadata:
   labels:
     type: local
     app: postgres
-  namespace: postgres
+  namespace: {{ .Release.Namespace | quote }}
 spec:
   storageClassName: manual
   capacity:
