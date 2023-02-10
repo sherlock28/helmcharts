@@ -24,7 +24,7 @@ spec:
   ports:
     - name: redis-service-port-http
       protocol: TCP
-      port: {{ DEFAULT:5432.Values.service.port }}
+      port: {{ .Values.service.port }}
       targetPort: 5432
   selector:
     app: redis
