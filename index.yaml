@@ -3,9 +3,9 @@ entries:
   postgres:
   - apiVersion: v2
     appVersion: "11"
-    created: "2023-02-16T17:31:02.2754747-03:00"
+    created: "2023-02-16T17:34:23.1220453-03:00"
     description: A Helm chart for install PostgreSQL in Kubernetes
-    digest: 90d4025307ab6a0ee58377467f456b4cbf5825ae51186ce2809935eb5a6258a1
+    digest: 2b4f656cfe1b85bf5e82701bcd63643837fe455c776552124aad2dd73dd32128
     name: postgres
     type: application
     urls:
@@ -13,7 +13,7 @@ entries:
     version: 0.2.1
   - apiVersion: v2
     appVersion: "11"
-    created: "2023-02-16T17:31:02.2749653-03:00"
+    created: "2023-02-16T17:34:23.1215131-03:00"
     description: A Helm chart for install PostgreSQL in Kubernetes
     digest: 37aa2f5ccbfa08fda07965cb85a91aa0fd679be1639b73496e0a8ebeb9278eb7
     name: postgres
@@ -24,7 +24,7 @@ entries:
   redis:
   - apiVersion: v2
     appVersion: 5-alpine
-    created: "2023-02-16T17:31:02.2760088-03:00"
+    created: "2023-02-16T17:34:23.1225949-03:00"
     description: A Helm chart for install Redis in Kubernetes
     digest: 90e5a950ece5a8031bec855dfde6bc48ead2a4899e1f4aee6554f07896e01175
     name: redis
@@ -34,7 +34,7 @@ entries:
     version: 0.2.1
   - apiVersion: v2
     appVersion: 5-alpine
-    created: "2023-02-16T17:31:02.2754747-03:00"
+    created: "2023-02-16T17:34:23.1225949-03:00"
     description: A Helm chart for install Redis in Kubernetes
     digest: 9f6b04b7a5eb52eb75765e147563b3825e97fac49cb35e65fdfc913998a1a356
     name: redis
@@ -42,4 +42,4 @@ entries:
     urls:
     - charts/redis-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-16T17:31:02.2744347-03:00"
+generated: "2023-02-16T17:34:23.1209845-03:00"
