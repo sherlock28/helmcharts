@@ -17,10 +17,10 @@ spec:
         - name: postgres
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          # lifecycle:
-          #   postStart:
-          #     exec:
-          #       command: ["su", "-", "postgres", "-c", "until psql -h localhost -U postgres -c 'SELECT 1' > /dev/null 2>&1; do echo 'Waiting for postgres...'; sleep 1; done; \"SELECT 'CREATE DATABASE \"{{ .Values.env.defaultDatabase }}\"' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '{{ .Values.env.defaultDatabase }}')\gexec\" | psql -U postgres -h localhost"]   
+          lifecycle:
+            postStart:
+              exec:
+                command: ["su", "-", "postgres", "-c", "until psql -h localhost -U postgres -c 'SELECT 1' > /dev/null 2>&1; do echo 'Waiting for postgres...'; sleep 1; done; \"SELECT 'CREATE DATABASE \"{{ .Values.env.defaultDatabase }}\"' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '{{ .Values.env.defaultDatabase }}')\gexec\" | psql -U postgres -h localhost"]   
           ports:
             - containerPort: 5432
               name: postgresport
