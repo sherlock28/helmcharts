@@ -16,7 +16,11 @@ env:
   password: "admin"
 
 service:
-  port: 5432
+  clusterIp:
+    port: 5432
+  loadBalancer:
+    enabled: false
+    port: 5432
 
 persistentVolume:
   capacity: 

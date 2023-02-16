@@ -17,12 +17,14 @@ spec:
         - name: postgres
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          lifecycle:
+            postStart:
+              exec:
+                command: ["su", "-", "postgres", "-c", "until psql -h localhost -U postgres -c 'SELECT 1' > /dev/null 2>&1; do echo 'Waiting for postgres...'; sleep 1; done; psql -U postgres -tc SELECT \"'CREATE DATABASE \"{{ .Values.env.defaultDatabase }}\"' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '{{ .Values.env.defaultDatabase }}')\gexec\""]
           ports:
             - containerPort: 5432
               name: postgresport
           env:
-          - name: POSTGRES_DB
-            value: {{ .Values.env.defaultDatabase }}
           - name: POSTGRES_USER
             valueFrom:
               secretKeyRef:
@@ -38,14 +40,14 @@ spec:
           - name: PGTZ
             value: {{ .Values.env.pgtz }}
           readinessProbe:
-            initialDelaySeconds: 15
-            failureThreshold: 5
+            initialDelaySeconds: 30
+            failureThreshold: 10
             timeoutSeconds: 2
             exec:
               command: ["psql", "-w", "-U", {{ .Values.env.username }}, "-d", "{{ .Values.env.defaultDatabase }}", "-c", "SELECT 1"]
           livenessProbe:
-            initialDelaySeconds: 15
-            failureThreshold: 5
+            initialDelaySeconds: 32
+            failureThreshold: 10
             timeoutSeconds: 2
             exec:
               command: ["psql", "-w", "-U", "{{ .Values.env.username }}", "-d", "{{ .Values.env.defaultDatabase }}", "-c", "SELECT 1"]
