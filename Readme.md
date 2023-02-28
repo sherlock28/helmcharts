@@ -1,1 +1,1 @@
-My repo for Helm Charts
+A helm charts repository for install Redis and PostgreSQL
